@@ -2,7 +2,7 @@ import { test, expect } from '@playwright/test';
 import { HomePage } from './page-objects/HomePage';
 
 test.describe('Adding a To-Do Item', () => {
-  test('Validating that an item with status "Incomplete" is displayed on the home page', async ({ page }) => {
+  test('Validating that a task previously created may be edited and deleted', async ({ page }) => {
     test.setTimeout(100000);
     const homePage = new HomePage(page);
 
@@ -15,10 +15,10 @@ test.describe('Adding a To-Do Item', () => {
     // Leave the dropdown with status "All"
     await homePage.setStatusFilter('All');
 
-    // Add a task with the title "test1" and status "Incomplete"
+    // Add a task with the title "test5" and status "Completed"
     await homePage.addTask('test5', 'Completed');
 
-    // Validate the task is displayed with the correct status and checkbox state
+    // Validate the task is displayed
     await homePage.validateTaskTitleVisible('test5');
 
     // Edit the 'test5' item and validate that new title is visible
