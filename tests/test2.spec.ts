@@ -18,7 +18,8 @@ test.describe('Adding a To-Do Item', () => {
     // Add a task with the title "test1" and status "Incomplete"
     await homePage.addTask('test2', 'Completed');
 
-    // Validate the task is displayed with the correct status and checkbox state
+    // Validate the task is displayed with the correct status and that checkbox is ticked
     await homePage.validateTaskTitleVisible('test2')
+    await homePage.validateCheckboxTicked();
   });
 });

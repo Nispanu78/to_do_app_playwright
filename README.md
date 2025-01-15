@@ -1,4 +1,4 @@
-To run this test suite locally, please follow the following instructions
+To run this test suite locally, please follow these guidelines
 
 1. Install node.js following the appropriate guidelines for your OS
 2. Verify that node.js and npm (node packet manager) is installed by running the following commands valid for both Linux and Windows:

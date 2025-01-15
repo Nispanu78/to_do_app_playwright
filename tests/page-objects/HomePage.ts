@@ -11,6 +11,7 @@ export class HomePage extends BasePage {
   readonly submitToDo: Locator;
   readonly taskList: Locator;
   readonly checkBoxUnticked: Locator;
+  readonly checkBoxTicked: Locator;
 
   constructor(page: Page) {
     super(page);
@@ -22,7 +23,8 @@ export class HomePage extends BasePage {
     this.statusMainPage = page.locator('//select[@id="status"]');
     this.statusDropdown = page.locator('//select[@id="type"]');
     this.taskList = page.locator('.task-list');
-    this.checkBoxUnticked = page.locator('//div[@class="app_app__wrapper__+aeJE"]//div[1]//div[1]//div[1]')
+    this.checkBoxUnticked = page.locator('//*[name()="svg"]//*[local-name()="path" and @opacity=0]')
+    this.checkBoxTicked = page.locator('//*[name()="svg"]//*[local-name()="path" and @opacity=1]')
   }
 
   async setStatusFilter(status: string): Promise<void> {
@@ -52,7 +54,11 @@ export class HomePage extends BasePage {
   }
   
   async validateCheckboxUnticked(): Promise<void> {
-    await expect(this.checkBoxUnticked).not.toBeChecked();
+    await expect(this.checkBoxUnticked).toBeEmpty();
+  }
+
+  async validateCheckboxTicked(): Promise<void> {
+    await expect(this.checkBoxUnticked).not.toBeFalsy
   }
 
 }
