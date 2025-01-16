@@ -18,6 +18,10 @@ npx playwright install
 4e. Verify installation with the following script:
 echo "const { chromium } = require('playwright'); (async () => { const browser = await chromium.launch(); const page = await browser.newPage(); await page.goto('https://example.com'); console.log(await page.title()); await browser.close(); })();" > test.js
 node test.js
-5. Run your first playwright test with the command:
-npx playwright test
-
+5. Features of the application are tested in Chrome version 131.0.6778.265
+6. Run all tests with the following command:
+npx playwright test --project=chromium
+7. Run a single test with the following command:
+npx playwright test tests/test5.spec.ts --project=chromium
+8. Open Playwright report (traceviewer is set as "on") with the following command:
+npx playwright show-report

@@ -34,7 +34,7 @@ Feature: Checking that drop-down of the home page work as expected
     When I select status "Completed"
     Then only completed tasks are displayed
 
-Feature: Checking that it is possible to edit and/or delete a task with each two statuses
+Feature: Checking that it is possible to edit and/or delete a task with each of the two statuses
   Scenario Outline: Validating that task with status "Incomplete" can be 
   edited and/or deleted
   Given that I open Chrome version 131.0.6778.265 and navigate to https://wc-react-todo-app.netlify.app/
@@ -53,7 +53,7 @@ Feature: Checking that it is possible to edit and/or delete a task with each two
   When I click on the delete button of task "test4_changed"
   Then the task is deleted
 
-Feature: Checking that it is possible to edit and/or delete a task with each two statuses
+Feature: Checking that it is possible to edit and/or delete a task with each of the two statuses
   Scenario Outline: Validating that a task with status "Completed" can be 
   edited and/or deleted
   Given that I open Chrome version 131.0.6778.265 and navigate to https://wc-react-todo-app.netlify.app/

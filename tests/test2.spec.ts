@@ -15,11 +15,12 @@ test.describe('Adding a To-Do Item', () => {
     // Leave the dropdown with status "All"
     await homePage.setStatusFilter('All');
 
-    // Add a task with the title "test1" and status "Completed"
+    // Add a task with the title "test2" and status "Completed"
     await homePage.addTask('test2', 'Completed');
 
-    // Validate the task is displayed with the correct status and that checkbox is ticked
+    // Validate the task is displayed with the correct status 
     await homePage.validateTaskTitleVisible('test2')
+    
     // Try to validate that checkbox is ticked
     await homePage.validateCheckboxTicked();
   });

@@ -20,6 +20,7 @@ test.describe('Adding a To-Do Item', () => {
 
     // Validate the task is displayed with the correct status
     await homePage.validateTaskTitleVisible('test1');
+    
     // Try to validate that checkbox is unticked
     await homePage.validateCheckboxUnticked();
   });
