@@ -25,3 +25,5 @@ npx playwright test --project=chromium
 npx playwright test tests/test5.spec.ts --project=chromium
 8. Open Playwright report (traceviewer is set as "on") with the following command:
 npx playwright show-report
+9. To debug, use 
+npx playwright test --debug
