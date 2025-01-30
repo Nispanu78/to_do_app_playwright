@@ -22,53 +22,44 @@ Feature: Adding a to do item with status "Completed"
     Then the to do item with the title "test2" is displayed on the home page as expected
     And checkbox is ticked
 
-Feature: Checking that drop-down of the home page work as expected 
-  Scenario Outline: Validating that tasks are displayed in the home page according to the options 
-  selected in the drop-down menu
+Feature: Checking that after opening the task creation window I can stop the creation process by clicking on the "X" button 
+  Scenario Outline: Validating that buttons to cancel the creation of a task work as expected 
     Given that I open Chrome version 131.0.6778.265 and navigate to https://wc-react-todo-app.netlify.app/
     And the home page of the Todo App app is displayed as expected
-    When I leave the default status "All" in the drop-down menu
-    Then both tasks with status "Incomplete" and "Completed" are displayed 
-    When I select the status "Incomplete" in the drop-down menu
-    Then only incomplete tasks are displayed
-    When I select status "Completed"
-    Then only completed tasks are displayed
+    And I leave the default status "All" in the drop-down menu
+    When I click on "Add Task" button
+    And I click on the "X" button
+    Then the window closes
+
+Feature: Checking that after opening the task creation window I can stop the creation process by clicking on the "Close" button 
+  Scenario Outline: Validating that buttons to cancel the creation of a task work as expected 
+    Given that I open Chrome version 131.0.6778.265 and navigate to https://wc-react-todo-app.netlify.app/
+    And the home page of the Todo App app is displayed as expected
+    And I leave the default status "All" in the drop-down menu
+    When I click on "Add Task" button
+    And I click on the "Close" button
+    Then the window closes
 
 Feature: Checking that it is possible to edit and/or delete a task with each of the two statuses
-  Scenario Outline: Validating that task with status "Incomplete" can be 
+  Scenario Outline: Validating that task with statuses "Incomplete" and/or "Completed" can be 
   edited and/or deleted
   Given that I open Chrome version 131.0.6778.265 and navigate to https://wc-react-todo-app.netlify.app/
   And the home page of the Todo App is displayed as expected
-  When I click on "Add Task" button
-  And I leave the status "Incomplete" from the drop-down menu
-  And I insert the title "test4"
-  And I click on the "Add Task" button
-  And I assert that the "test4" to do item is visible
-  And I click on the edit button corresponding to the item "test4"
-  Then I can change the current title with "test4_changed"
-  And I can change the status of the drop-down menu from "Incomplete" to "Completed"
-  And I can click on the "Update Task" button
-  When I select "Completed" tasks from the home page drop-down menu
-  Then the task "test4_changed" is shown with the new status on the home page
-  When I click on the delete button of task "test4_changed"
+  And I leave the status "All" from the drop-down menu
+  And I click on "Add Task" button
+  And I insert the title "test3"
+  And I leave the status "Incomplete"
+  And I click "Add Task"
+  And I choose the status "Incomplete" from the drop-down menu of the main page
+  And I assert that "test3" task is visible
+  And I choose the status "Alle" from the drop-down menu
+  And I assert that "test3" task is visible
+  And I click on the edit button corresponding to the item "test3"
+  And I change the current title with "test3_changed"
+  And I change the status of the task from "Incomplete" to "Completed"
+  And I click on the "Update Task" button
+  And I select "Completed" from the drop-down menu of the main page
+  When I assert that "test3_changed" task is visible
+  Then the task "test3_changed" is shown with the new status on the home page
+  When I click on the delete button of task "test3_changed"
   Then the task is deleted
-
-Feature: Checking that it is possible to edit and/or delete a task with each of the two statuses
-  Scenario Outline: Validating that a task with status "Completed" can be 
-  edited and/or deleted
-  Given that I open Chrome version 131.0.6778.265 and navigate to https://wc-react-todo-app.netlify.app/
-  And the home page of the Todo App is displayed as expected
-  When I click on "Add Task" button
-  And I change the status from "Incomplete" to "Completed" from the drop-down menu
-  And I insert the title "test5"
-  And I click on the "Add Task" button
-  And I assert that the "test5" to do item is visible
-  And I click on the edit button corresponding to the item "test5"
-  Then I can change the current title with "test5_changed"
-  And I can change the status of the drop-down menu from "Completed" to "Incomplete"
-  And I can click on the "Update Task" button
-  When I select "Incomplete" tasks from the home page drop-down menu
-  Then the task "test5_changed" is shown with the new status on the home page
-  When I click on the delete button of task "test5_changed"
-  Then the task is deleted
-

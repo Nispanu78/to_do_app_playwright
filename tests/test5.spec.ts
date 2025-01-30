@@ -12,20 +12,29 @@ test.describe('Adding a To-Do Item', () => {
     // Validate the home page is displayed
     expect(await page.title()).toContain('Todo App');
 
-    // Leave the dropdown with status "All"
+    // Add a task with the title "test3" and status "Incomplete"
+    await homePage.addTask('test3', 'Incomplete');
+
+    // Switch to status "Incomplete"
+    await homePage.setStatusFilter('Incomplete');
+
+    // Validate the task with "Incomplete" status is displayed 
+    await homePage.validateTaskTitleVisible('test3');
+
+    // Switch the dropdown to status "All"
     await homePage.setStatusFilter('All');
 
-    // Add a task with the title "test5" and status "Completed"
-    await homePage.addTask('test5', 'Completed');
+    // Validate the task with "Incomplete" status is still displayed 
+    await homePage.validateTaskTitleVisible('test3');
 
-    // Validate the task is displayed
-    await homePage.validateTaskTitleVisible('test5');
+    // Edit the 'test3' task and validate that new title 'test3_changed' is visible
+    await homePage.editTask('test3_changed', 'Completed');
+    
+    // Switch to status "Completed"
+    await homePage.setStatusFilter('Completed');
+    await homePage.validateTaskTitleVisible('test3_changed');
 
-    // Edit the 'test5' item and validate that new title is visible
-    await homePage.editTask('test5_changed', 'Completed');
-    await homePage.validateTaskTitleVisible('test5_changed');
-
-    // Delete the 'test5_changed task'
+    // Delete the 'test3_changed' task
     await homePage.deleteTask()
   });
 });

@@ -2,7 +2,7 @@ import { test, expect } from '@playwright/test';
 import { HomePage } from './page-objects/HomePage';
 
 test.describe('Adding a To-Do Item', () => {
-  test('Validating that tasks with different statuses are displayed on the home page according to preferred selection', async ({ page }) => {
+  test('Validating that I can close a window with the "X" button', async ({ page }) => {
     test.setTimeout(140000);
     const homePage = new HomePage(page);
 
@@ -15,10 +15,10 @@ test.describe('Adding a To-Do Item', () => {
     // Leave the dropdown with status "All"
     await homePage.setStatusFilter('All');
 
-    // Now switch to status "Incomplete"
-    await homePage.setStatusFilter('Incomplete');
+    // Add a task with the title "test3_incomplete" and status "Incomplete"
+    await homePage.addEmptyTask();
 
-    // Now switch to status "Completed"
-    await homePage.setStatusFilter('Completed');
+    // Close the page with the "X" button
+    await homePage.closePageWithXButton();
   });
 });
