@@ -3,7 +3,6 @@ import { HomePage } from './page-objects/HomePage';
 
 test.describe('Adding a To-Do Item', () => {
   test('Validating that tasks with different statuses are displayed on the home page according to preferred selection', async ({ page }) => {
-    test.setTimeout(140000);
     const homePage = new HomePage(page);
 
     // Open Chrome and navigate to the application

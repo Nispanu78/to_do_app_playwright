@@ -3,7 +3,6 @@ import { HomePage } from './page-objects/HomePage';
 
 test.describe('Adding a To-Do Item', () => {
   test('Validating that I can close a window with the "X" button', async ({ page }) => {
-    test.setTimeout(140000);
     const homePage = new HomePage(page);
 
     // Open Chrome and navigate to the application

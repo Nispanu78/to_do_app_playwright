@@ -3,7 +3,6 @@ import { HomePage } from './page-objects/HomePage';
 
 test.describe('Adding a To-Do Item', () => {
   test('Validating that a task previously created may be edited and deleted', async ({ page }) => {
-    test.setTimeout(100000);
     const homePage = new HomePage(page);
 
     // Open Chrome and navigate to the application

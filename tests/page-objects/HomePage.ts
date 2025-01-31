@@ -1,5 +1,6 @@
 import { BasePage } from './BasePage';
 import { Locator, Page, expect } from '@playwright/test';
+import { locators } from './Locators';
 
 export class HomePage extends BasePage {
   readonly clickTaskButton: Locator;
@@ -14,25 +15,21 @@ export class HomePage extends BasePage {
   readonly checkBoxTicked: Locator;
   readonly xButton: Locator;
   readonly closePageWithCancelButton: Locator;
-  readonly CheckBoxTickedAttribute: Locator;
-  readonly CheckBoxTickedAttributeValue: Locator;
-  readonly CheckBoxUnTickedAttribute: Locator;
-  readonly CheckBoxUntickedAttributeValue: Locator; 
 
   constructor(page: Page) {
     super(page);
-    this.clickTaskButton = page.locator("//button[normalize-space()='Add Task']");
-    this.clickEditButton = page.locator("//div[@class='todoItem_todoActions__CuQMN']//div[2]//*[name()='svg']")
-    this.clickDeleteButton = page.locator("//div[@class='todoItem_todoActions__CuQMN']//div[1]")
-    this.submitToDo = page.locator("button[type='submit']")
-    this.taskTitleInput = page.locator('//input[@id="title"]');
-    this.statusMainPage = page.locator('//select[@id="status"]');
-    this.statusDropdown = page.locator('//select[@id="type"]');
-    this.taskList = page.locator('.task-list');
-    this.checkBoxUnticked = page.locator('//*[name()="svg"]//*[local-name()="path" and @opacity=0]')
-    this.checkBoxTicked = page.locator('//*[name()="svg"]//*[local-name()="path" and @opacity=1]')
-    this.xButton = page.locator("//div[@class='modal_closeButton__Fg7AM']//*[name()='svg']//*[name()='path' and contains(@fill,'none')]")
-    this.closePageWithCancelButton = page.locator("//button[normalize-space()='Cancel']")
+    this.clickTaskButton = page.locator(locators.clickTaskButton);
+    this.clickEditButton = page.locator(locators.clickEditButton);
+    this.clickDeleteButton = page.locator(locators.clickDeleteButton);
+    this.submitToDo = page.locator(locators.submitToDo);
+    this.taskTitleInput = page.locator(locators.taskTitleInput);
+    this.statusMainPage = page.locator(locators.statusMainPage);
+    this.statusDropdown = page.locator(locators.statusDropdown);
+    this.taskList = page.locator(locators.taskList);
+    this.checkBoxUnticked = page.locator(locators.checkBoxUnticked);
+    this.checkBoxTicked = page.locator(locators.checkBoxTicked);
+    this.xButton = page.locator(locators.xButton);
+    this.closePageWithCancelButton = page.locator(locators.closePageWithCancelButton);
   }
 
   async setStatusFilter(status: string): Promise<void> {
@@ -62,9 +59,9 @@ export class HomePage extends BasePage {
   }
 
   async deleteTask(): Promise<void> {
-    await this.clickDeleteButton.click()
+    await this.clickDeleteButton.click();
   }
-  
+
   async validateCheckboxUnticked(): Promise<void> {
     await expect(this.checkBoxUnticked).toHaveAttribute('stroke-dasharray', '0px 1px');
   }
@@ -74,12 +71,10 @@ export class HomePage extends BasePage {
   }
 
   async closePageWithXButton(): Promise<void> {
-    await this.xButton.click()
+    await this.xButton.click();
   }
 
   async cancelButton(): Promise<void> {
-    await this.closePageWithCancelButton.click()
+    await this.closePageWithCancelButton.click();
   }
-
-
 }
