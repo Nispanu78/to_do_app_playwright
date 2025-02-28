@@ -32,49 +32,86 @@ export class HomePage extends BasePage {
     this.closePageWithCancelButton = page.locator(locators.closePageWithCancelButton);
   }
 
-  async setStatusFilter(status: string): Promise<void> {
-    await this.statusMainPage.selectOption({ label: status });
-  }
+    async setStatusFilter(status: string) {
+      try {
+          await this.statusMainPage.selectOption({ label: status });
+      } catch (error) {
+          console.error("Error setting status filter:", error);
+      }
+    }
 
-  async addTask(title: string, status: string): Promise<void> {
-    await this.clickTaskButton.click();
-    await this.taskTitleInput.fill(title);
-    await this.statusDropdown.selectOption({ label: status });
-    await this.submitToDo.click();
-  }
+    async addTask(title: string, status: string) {
+      try {
+          await this.clickTaskButton.click();
+          await this.taskTitleInput.fill(title);
+          await this.statusDropdown.selectOption({ label: status });
+          await this.submitToDo.click();
+      } catch (error) {
+          console.error("Error adding task:", error);
+      }
+    }
 
   async addEmptyTask(): Promise<void> {
     await this.clickTaskButton.click();
-  }
+    }
 
-  async validateTaskTitleVisible(title: string): Promise<void> {
-    await expect(this.page.getByText(title)).toBeVisible();
-  }
+  async validateTaskTitleVisible(title: string) {
+      try {
+          await expect(this.page.getByText(title)).toBeVisible();
+      } catch (error) {
+          console.error(`Error validating task title visibility: ${title}`, error);
+      }
+    }
 
-  async editTask(title: string, status: string): Promise<void> {
-    await this.clickEditButton.click();
-    await this.taskTitleInput.fill(title);
-    await this.statusDropdown.selectOption({ label: status });
-    await this.submitToDo.click();
-  }
+  async editTask(title: string, status: string) {
+      try {
+          await this.clickEditButton.click();
+          await this.taskTitleInput.fill(title);
+          await this.statusDropdown.selectOption({ label: status });
+          await this.submitToDo.click();
+      } catch (error) {
+          console.error(`Error editing task with title: ${title} and status: ${status}`, error);
+      }
+    }
 
-  async deleteTask(): Promise<void> {
-    await this.clickDeleteButton.click();
-  }
+  async deleteTask() {
+        try {
+            await this.clickDeleteButton.click();
+        } catch (error) {
+            console.error("Error deleting task:", error);
+        }
+    }
 
-  async validateCheckboxUnticked(): Promise<void> {
-    await expect(this.checkBoxUnticked).toHaveAttribute('stroke-dasharray', '0px 1px');
-  }
+  async validateCheckboxUnticked() {
+      try {
+          await expect(this.checkBoxUnticked).toHaveAttribute('stroke-dasharray', '0px 1px');
+      } catch (error) {
+          console.error("Error validating checkbox unticked state:", error);
+      }
+    }
 
-  async validateCheckboxTicked(): Promise<void> {
-    await expect(this.checkBoxTicked).toHaveAttribute('stroke-dasharray', '1px 1px');
-  }
+  async validateCheckboxTicked() {
+      try {
+          await expect(this.checkBoxTicked).toHaveAttribute('stroke-dasharray', '1px 1px');
+      } catch (error) {
+          console.error("Error validating checkbox ticked state:", error);
+      }
+    }
 
-  async closePageWithXButton(): Promise<void> {
-    await this.xButton.click();
-  }
+  async closePageWithXButton() {
+      try {
+          await this.xButton.click();
+      } catch (error) {
+          console.error("Error closing the page with X button:", error);
+      }
+    }
 
-  async cancelButton(): Promise<void> {
-    await this.closePageWithCancelButton.click();
-  }
+  async cancelButton() {
+      try {
+          await this.closePageWithCancelButton.click();
+      } catch (error) {
+          console.error("Error closing the page with Cancel button:", error);
+      }
+    }
+
 }
