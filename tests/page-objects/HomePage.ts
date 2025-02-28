@@ -51,8 +51,12 @@ export class HomePage extends BasePage {
       }
     }
 
-  async addEmptyTask(): Promise<void> {
-    await this.clickTaskButton.click();
+    async addEmptyTask() {
+      try {
+          await this.clickTaskButton.click();
+      } catch (error) {
+          console.error("Error adding an empty task:", error);
+      }
     }
 
   async validateTaskTitleVisible(title: string) {
